@@ -3,6 +3,20 @@
     <style name="Base.Theme.Calculator" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
+
+        <item name="colorPrimaryVariant">@color/dark_purple</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="AppBar">
+        <item name="android:background">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Text">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:background">?attr/colorOnBackground</item>
     </style>
 
     <style name="Theme.Calculator" parent="Base.Theme.Calculator" />
