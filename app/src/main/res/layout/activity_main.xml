@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorOnBackground"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -27,30 +28,30 @@
     <TextView
         android:id="@+id/tv_history"
         style="@style/Text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:autoSizeMaxTextSize="50sp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
         android:gravity="center|end"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/grid_layout"
+        app:layout_constraintStart_toStartOf="@id/grid_layout"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
 
     <TextView
         android:id="@+id/tv_result"
         style="@style/Text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="100dp"
         android:autoSizeMaxTextSize="75sp"
         android:autoSizeMinTextSize="18sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
         android:gravity="center|end"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_history" />
+        app:layout_constraintBottom_toTopOf="@id/grid_layout"
+        app:layout_constraintEnd_toEndOf="@id/grid_layout"
+        app:layout_constraintStart_toStartOf="@id/grid_layout" />
 
     <GridLayout
         android:id="@+id/grid_layout"
