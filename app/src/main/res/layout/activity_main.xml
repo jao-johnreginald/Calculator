@@ -70,7 +70,8 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:text="@string/ac" />
+            android:text="@string/ac"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_del"
@@ -79,7 +80,8 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="@string/del" />
+            android:text="@string/del"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_divide"
@@ -88,7 +90,8 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="2"
-            android:text="@string/divide" />
+            android:text="@string/divide"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_multi"
@@ -97,7 +100,8 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="3"
-            android:text="@string/multi" />
+            android:text="@string/multi"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seven"
@@ -106,7 +110,8 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:text="@string/seven" />
+            android:text="@string/seven"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_eight"
@@ -115,7 +120,8 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:text="@string/eight" />
+            android:text="@string/eight"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_nine"
@@ -124,7 +130,8 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="2"
-            android:text="@string/nine" />
+            android:text="@string/nine"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_minus"
@@ -133,7 +140,8 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="3"
-            android:text="@string/minus" />
+            android:text="@string/minus"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_four"
@@ -142,7 +150,8 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="0"
-            android:text="@string/four" />
+            android:text="@string/four"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_five"
@@ -151,7 +160,8 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="1"
-            android:text="@string/five" />
+            android:text="@string/five"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_six"
@@ -160,7 +170,8 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="2"
-            android:text="@string/six" />
+            android:text="@string/six"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_plus"
@@ -169,7 +180,8 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="3"
-            android:text="@string/plus" />
+            android:text="@string/plus"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_one"
@@ -178,7 +190,8 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="0"
-            android:text="@string/one" />
+            android:text="@string/one"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_two"
@@ -187,7 +200,8 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="1"
-            android:text="@string/two" />
+            android:text="@string/two"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_three"
@@ -196,7 +210,8 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="2"
-            android:text="@string/three" />
+            android:text="@string/three"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_equals"
@@ -207,7 +222,8 @@
             android:layout_rowSpan="2"
             android:layout_rowWeight="1"
             android:layout_column="3"
-            android:text="@string/equals" />
+            android:text="@string/equals"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_dot"
@@ -216,7 +232,8 @@
             android:layout_height="80dp"
             android:layout_row="4"
             android:layout_column="0"
-            android:text="@string/dot" />
+            android:text="@string/dot"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_zero"
@@ -226,6 +243,7 @@
             android:layout_row="4"
             android:layout_column="1"
             android:layout_columnSpan="2"
-            android:text="@string/zero" />
+            android:text="@string/zero"
+            android:textSize="30sp" />
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

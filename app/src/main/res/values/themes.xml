@@ -20,7 +20,6 @@
     </style>
 
     <style name="Button">
-        <item name="android:textSize">30sp</item>
         <item name="android:layout_columnWeight">1</item>
     </style>
 
