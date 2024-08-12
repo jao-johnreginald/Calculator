@@ -70,7 +70,7 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:text="AC" />
+            android:text="@string/ac" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_del"
@@ -79,7 +79,7 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="DEL" />
+            android:text="@string/del" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_divide"
@@ -88,7 +88,7 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="2"
-            android:text="/" />
+            android:text="@string/divide" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_multi"
@@ -97,7 +97,7 @@
             android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="3"
-            android:text="*" />
+            android:text="@string/multi" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seven"
@@ -106,7 +106,7 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:text="7" />
+            android:text="@string/seven" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_eight"
@@ -115,7 +115,7 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:text="8" />
+            android:text="@string/eight" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_nine"
@@ -124,7 +124,7 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="2"
-            android:text="9" />
+            android:text="@string/nine" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_minus"
@@ -133,7 +133,7 @@
             android:layout_height="80dp"
             android:layout_row="1"
             android:layout_column="3"
-            android:text="-" />
+            android:text="@string/minus" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_four"
@@ -142,7 +142,7 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="0"
-            android:text="4" />
+            android:text="@string/four" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_five"
@@ -151,7 +151,7 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="1"
-            android:text="5" />
+            android:text="@string/five" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_six"
@@ -160,7 +160,7 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="2"
-            android:text="6" />
+            android:text="@string/six" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_plus"
@@ -169,7 +169,7 @@
             android:layout_height="80dp"
             android:layout_row="2"
             android:layout_column="3"
-            android:text="+" />
+            android:text="@string/plus" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_one"
@@ -178,7 +178,7 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="0"
-            android:text="1" />
+            android:text="@string/one" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_two"
@@ -187,7 +187,7 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="1"
-            android:text="2" />
+            android:text="@string/two" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_three"
@@ -196,7 +196,7 @@
             android:layout_height="80dp"
             android:layout_row="3"
             android:layout_column="2"
-            android:text="3" />
+            android:text="@string/three" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_equals"
@@ -207,7 +207,7 @@
             android:layout_rowSpan="2"
             android:layout_rowWeight="1"
             android:layout_column="3"
-            android:text="=" />
+            android:text="@string/equals" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_dot"
@@ -216,7 +216,7 @@
             android:layout_height="80dp"
             android:layout_row="4"
             android:layout_column="0"
-            android:text="." />
+            android:text="@string/dot" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_zero"
@@ -226,6 +226,6 @@
             android:layout_row="4"
             android:layout_column="1"
             android:layout_columnSpan="2"
-            android:text="0" />
+            android:text="@string/zero" />
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
