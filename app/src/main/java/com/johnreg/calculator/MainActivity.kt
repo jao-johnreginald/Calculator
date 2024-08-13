@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.johnreg.calculator.databinding.ActivityMainBinding
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private var status: String? = null
     private var operator: Boolean = false
+
+    private val mFormatter = DecimalFormat("######.######")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,19 +118,19 @@ class MainActivity : AppCompatActivity() {
     private fun plus() {
         lastNumber = binding.tvResult.text.toString().toDouble()
         firstNumber += lastNumber
-        binding.tvResult.text = firstNumber.toString()
+        binding.tvResult.text = mFormatter.format(firstNumber)
     }
 
     private fun minus() {
         lastNumber = binding.tvResult.text.toString().toDouble()
         firstNumber -= lastNumber
-        binding.tvResult.text = firstNumber.toString()
+        binding.tvResult.text = mFormatter.format(firstNumber)
     }
 
     private fun multi() {
         lastNumber = binding.tvResult.text.toString().toDouble()
         firstNumber *= lastNumber
-        binding.tvResult.text = firstNumber.toString()
+        binding.tvResult.text = mFormatter.format(firstNumber)
     }
 
     private fun divide() {
@@ -137,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
         } else {
             firstNumber *= lastNumber
-            binding.tvResult.text = firstNumber.toString()
+            binding.tvResult.text = mFormatter.format(firstNumber)
         }
     }
 
