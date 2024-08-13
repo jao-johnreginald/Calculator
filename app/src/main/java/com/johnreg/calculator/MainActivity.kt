@@ -124,6 +124,11 @@ class MainActivity : AppCompatActivity() {
 
             operator = false
         }
+
+        binding.btnDot.setOnClickListener {
+            number = if (number == null) "0." else "$number."
+            binding.tvResult.text = number
+        }
     }
 
     private fun onButtonAcClicked() {
