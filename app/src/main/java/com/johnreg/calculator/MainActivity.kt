@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         if (lastNumber == 0.0) {
             Toast.makeText(applicationContext, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
         } else {
-            firstNumber *= lastNumber
+            firstNumber /= lastNumber
             binding.tvResult.text = mFormatter.format(firstNumber)
         }
     }
