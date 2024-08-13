@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     private val mFormatter = DecimalFormat("######.######")
 
+    private var history: String = ""
+    private var currentResult: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -51,6 +54,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnDivide.setOnClickListener {
+            history = binding.tvHistory.text.toString()
+            currentResult = binding.tvResult.text.toString()
+
+            // The plus method of the String class is used to concatenate 2 String expressions together
+            binding.tvHistory.text = history.plus(currentResult).plus("/")
+
             if (operator) {
                 when (status) {
                     "divide" -> divide()
@@ -66,6 +75,11 @@ class MainActivity : AppCompatActivity() {
             number = null
         }
         binding.btnMulti.setOnClickListener {
+            history = binding.tvHistory.text.toString()
+            currentResult = binding.tvResult.text.toString()
+
+            binding.tvHistory.text = history.plus(currentResult).plus("*")
+
             if (operator) {
                 when (status) {
                     "divide" -> divide()
@@ -81,6 +95,11 @@ class MainActivity : AppCompatActivity() {
             number = null
         }
         binding.btnMinus.setOnClickListener {
+            history = binding.tvHistory.text.toString()
+            currentResult = binding.tvResult.text.toString()
+
+            binding.tvHistory.text = history.plus(currentResult).plus("-")
+
             if (operator) {
                 when (status) {
                     "divide" -> divide()
@@ -96,6 +115,11 @@ class MainActivity : AppCompatActivity() {
             number = null
         }
         binding.btnPlus.setOnClickListener {
+            history = binding.tvHistory.text.toString()
+            currentResult = binding.tvResult.text.toString()
+
+            binding.tvHistory.text = history.plus(currentResult).plus("+")
+
             if (operator) {
                 when (status) {
                     "divide" -> divide()
@@ -112,6 +136,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEquals.setOnClickListener {
+            history = binding.tvHistory.text.toString()
+            currentResult = binding.tvResult.text.toString()
+
             if (operator) {
                 when (status) {
                     "divide" -> divide()
@@ -120,6 +147,11 @@ class MainActivity : AppCompatActivity() {
                     "plus" -> plus()
                     else -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
+
+                binding.tvHistory.text = history
+                    .plus(currentResult)
+                    .plus("=")
+                    .plus(binding.tvResult.text.toString())
             }
 
             operator = false
