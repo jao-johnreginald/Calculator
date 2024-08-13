@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     private var firstNumber: Double = 0.0
     private var lastNumber: Double = 0.0
 
+    private var status: String? = null
+    private var operator: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,6 +38,67 @@ class MainActivity : AppCompatActivity() {
         binding.btnSeven.setOnClickListener { onNumberClicked("7") }
         binding.btnEight.setOnClickListener { onNumberClicked("8") }
         binding.btnNine.setOnClickListener { onNumberClicked("9") }
+
+        binding.btnDivide.setOnClickListener {
+            if (operator) {
+                when (status) {
+                    "divide" -> divide()
+                    "multi" -> multi()
+                    "minus" -> minus()
+                    "plus" -> plus()
+                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                }
+
+                status = "divide"
+                operator = false
+                number = null
+            }
+        }
+        binding.btnMulti.setOnClickListener {
+            if (operator) {
+                when (status) {
+                    "divide" -> divide()
+                    "multi" -> multi()
+                    "minus" -> minus()
+                    "plus" -> plus()
+                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                }
+
+                status = "multi"
+                operator = false
+                number = null
+            }
+        }
+        binding.btnMinus.setOnClickListener {
+            if (operator) {
+                when (status) {
+                    "divide" -> divide()
+                    "multi" -> multi()
+                    "minus" -> minus()
+                    "plus" -> plus()
+                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                }
+
+                status = "minus"
+                operator = false
+                number = null
+            }
+        }
+        binding.btnPlus.setOnClickListener {
+            if (operator) {
+                when (status) {
+                    "divide" -> divide()
+                    "multi" -> multi()
+                    "minus" -> minus()
+                    "plus" -> plus()
+                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                }
+
+                status = "plus"
+                operator = false
+                number = null
+            }
+        }
     }
 
     private fun onNumberClicked(clickedNumber: String) {
@@ -45,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.tvResult.text = number
+        operator = true
     }
 
     private fun plus() {
