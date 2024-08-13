@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private var history: String = ""
     private var currentResult: String = ""
 
+    private var dotControl: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             status = "divide"
             operator = false
             number = null
+            dotControl = true
         }
         binding.btnMulti.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -93,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             status = "multi"
             operator = false
             number = null
+            dotControl = true
         }
         binding.btnMinus.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -113,6 +117,7 @@ class MainActivity : AppCompatActivity() {
             status = "minus"
             operator = false
             number = null
+            dotControl = true
         }
         binding.btnPlus.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -133,6 +138,7 @@ class MainActivity : AppCompatActivity() {
             status = "plus"
             operator = false
             number = null
+            dotControl = true
         }
 
         binding.btnEquals.setOnClickListener {
@@ -155,11 +161,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             operator = false
+            dotControl = true
         }
 
         binding.btnDot.setOnClickListener {
-            number = if (number == null) "0." else "$number."
-            binding.tvResult.text = number
+            if (dotControl) {
+                number = if (number == null) "0." else "$number."
+                binding.tvResult.text = number
+            }
+
+            dotControl = false
         }
     }
 
@@ -170,6 +181,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistory.text = null
         firstNumber = 0.0
         lastNumber = 0.0
+        dotControl = true
     }
 
     private fun onNumberClicked(clickedNumber: String) {
