@@ -50,8 +50,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnAc.setOnClickListener { onButtonAcClicked() }
         binding.btnDel.setOnClickListener {
             number?.let {
-                number = it.substring(0, it.length - 1)
-                binding.tvResult.text = number
+                if (it.length == 1) {
+                    onButtonAcClicked()
+                } else {
+                    number = it.substring(0, it.length - 1)
+                    binding.tvResult.text = number
+                    dotControl = !number!!.contains(".")
+                }
             }
         }
 
