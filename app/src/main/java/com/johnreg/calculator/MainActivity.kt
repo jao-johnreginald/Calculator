@@ -1,6 +1,7 @@
 package com.johnreg.calculator
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.johnreg.calculator.databinding.ActivityMainBinding
 
@@ -9,6 +10,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var number: String? = null
+
+    private var firstNumber: Double = 0.0
+    private var lastNumber: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.tvResult.text = number
+    }
+
+    private fun plus() {
+        lastNumber = binding.tvResult.text.toString().toDouble()
+        firstNumber += lastNumber
+        binding.tvResult.text = firstNumber.toString()
+    }
+
+    private fun minus() {
+        lastNumber = binding.tvResult.text.toString().toDouble()
+        firstNumber -= lastNumber
+        binding.tvResult.text = firstNumber.toString()
+    }
+
+    private fun multi() {
+        lastNumber = binding.tvResult.text.toString().toDouble()
+        firstNumber *= lastNumber
+        binding.tvResult.text = firstNumber.toString()
+    }
+
+    private fun divide() {
+        lastNumber = binding.tvResult.text.toString().toDouble()
+
+        if (lastNumber == 0.0) {
+            Toast.makeText(applicationContext, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
+        } else {
+            firstNumber *= lastNumber
+            binding.tvResult.text = firstNumber.toString()
+        }
     }
 
 }
