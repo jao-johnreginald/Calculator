@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
                     "plus" -> plus()
                     else -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
-
-                status = "divide"
-                operator = false
-                number = null
             }
+
+            status = "divide"
+            operator = false
+            number = null
         }
         binding.btnMulti.setOnClickListener {
             if (operator) {
@@ -66,11 +66,11 @@ class MainActivity : AppCompatActivity() {
                     "plus" -> plus()
                     else -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
-
-                status = "multi"
-                operator = false
-                number = null
             }
+
+            status = "multi"
+            operator = false
+            number = null
         }
         binding.btnMinus.setOnClickListener {
             if (operator) {
@@ -81,11 +81,11 @@ class MainActivity : AppCompatActivity() {
                     "plus" -> plus()
                     else -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
-
-                status = "minus"
-                operator = false
-                number = null
             }
+
+            status = "minus"
+            operator = false
+            number = null
         }
         binding.btnPlus.setOnClickListener {
             if (operator) {
@@ -96,11 +96,11 @@ class MainActivity : AppCompatActivity() {
                     "plus" -> plus()
                     else -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
-
-                status = "plus"
-                operator = false
-                number = null
             }
+
+            status = "plus"
+            operator = false
+            number = null
         }
     }
 
