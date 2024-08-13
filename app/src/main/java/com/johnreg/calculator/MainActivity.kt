@@ -42,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnEight.setOnClickListener { onNumberClicked("8") }
         binding.btnNine.setOnClickListener { onNumberClicked("9") }
 
+        binding.btnAc.setOnClickListener { onButtonAcClicked() }
+        binding.btnDel.setOnClickListener {
+            number?.let {
+                number = it.substring(0, it.length - 1)
+                binding.tvResult.text = number
+            }
+        }
+
         binding.btnDivide.setOnClickListener {
             if (operator) {
                 when (status) {
@@ -102,6 +110,29 @@ class MainActivity : AppCompatActivity() {
             operator = false
             number = null
         }
+
+        binding.btnEquals.setOnClickListener {
+            if (operator) {
+                when (status) {
+                    "divide" -> divide()
+                    "multi" -> multi()
+                    "minus" -> minus()
+                    "plus" -> plus()
+                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                }
+            }
+
+            operator = false
+        }
+    }
+
+    private fun onButtonAcClicked() {
+        number = null
+        status = null
+        binding.tvResult.text = getString(R.string.zero)
+        binding.tvHistory.text = null
+        firstNumber = 0.0
+        lastNumber = 0.0
     }
 
     private fun onNumberClicked(clickedNumber: String) {
