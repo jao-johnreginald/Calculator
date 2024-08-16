@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var firstNumber: Double = 0.0
     private var lastNumber: Double = 0.0
 
-    private var status: String? = null
+    private var status: Operation? = null
     private var operator: Boolean = false
 
     private val mFormatter = DecimalFormat("######.######")
@@ -61,10 +61,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnDivide.setOnClickListener { onOperationClicked("/", "divide") }
-        binding.btnMulti.setOnClickListener { onOperationClicked("*", "multi") }
-        binding.btnMinus.setOnClickListener { onOperationClicked("-", "minus") }
-        binding.btnPlus.setOnClickListener { onOperationClicked("+", "plus") }
+        binding.btnDivide.setOnClickListener { onOperationClicked("/", Operation.DIVIDE) }
+        binding.btnMulti.setOnClickListener { onOperationClicked("*", Operation.MULTI) }
+        binding.btnMinus.setOnClickListener { onOperationClicked("-", Operation.MINUS) }
+        binding.btnPlus.setOnClickListener { onOperationClicked("+", Operation.PLUS) }
 
         binding.btnEquals.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -72,11 +72,11 @@ class MainActivity : AppCompatActivity() {
 
             if (operator) {
                 when (status) {
-                    "divide" -> divide()
-                    "multi" -> multi()
-                    "minus" -> minus()
-                    "plus" -> plus()
-                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                    Operation.DIVIDE -> divide()
+                    Operation.MULTI -> multi()
+                    Operation.MINUS -> minus()
+                    Operation.PLUS -> plus()
+                    null -> firstNumber = binding.tvResult.text.toString().toDouble()
                 }
 
                 binding.tvHistory.text = history
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         equalsControl = false
     }
 
-    private fun onOperationClicked(symbol: String, operation: String) {
+    private fun onOperationClicked(symbol: String, operation: Operation) {
         history = binding.tvHistory.text.toString()
         currentResult = binding.tvResult.text.toString()
 
@@ -154,11 +154,11 @@ class MainActivity : AppCompatActivity() {
 
         if (operator) {
             when (status) {
-                "divide" -> divide()
-                "multi" -> multi()
-                "minus" -> minus()
-                "plus" -> plus()
-                else -> firstNumber = binding.tvResult.text.toString().toDouble()
+                Operation.DIVIDE -> divide()
+                Operation.MULTI -> multi()
+                Operation.MINUS -> minus()
+                Operation.PLUS -> plus()
+                null -> firstNumber = binding.tvResult.text.toString().toDouble()
             }
         }
 
