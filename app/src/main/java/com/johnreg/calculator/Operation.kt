@@ -4,5 +4,6 @@ enum class Operation {
     DIVIDE,
     MULTI,
     MINUS,
-    PLUS
+    PLUS,
+    NULL
 }
