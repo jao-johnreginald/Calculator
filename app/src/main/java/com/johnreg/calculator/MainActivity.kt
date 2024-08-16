@@ -157,9 +157,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performOperation() {
+        val resultTextToDouble = binding.tvResult.text.toString().toDouble()
         when (status) {
             Operation.DIVIDE -> {
-                lastNumber = binding.tvResult.text.toString().toDouble()
+                lastNumber = resultTextToDouble
 
                 if (lastNumber == 0.0) {
                     Toast.makeText(
@@ -172,24 +173,24 @@ class MainActivity : AppCompatActivity() {
             }
 
             Operation.MULTI -> {
-                lastNumber = binding.tvResult.text.toString().toDouble()
+                lastNumber = resultTextToDouble
                 firstNumber *= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.MINUS -> {
-                lastNumber = binding.tvResult.text.toString().toDouble()
+                lastNumber = resultTextToDouble
                 firstNumber -= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.PLUS -> {
-                lastNumber = binding.tvResult.text.toString().toDouble()
+                lastNumber = resultTextToDouble
                 firstNumber += lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
-            Operation.NULL -> firstNumber = binding.tvResult.text.toString().toDouble()
+            Operation.NULL -> firstNumber = resultTextToDouble
         }
     }
 
