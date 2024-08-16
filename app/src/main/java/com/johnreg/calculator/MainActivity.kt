@@ -158,40 +158,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun performOperation() {
         when (status) {
-            Operation.DIVIDE -> divide()
-            Operation.MULTI -> multi()
-            Operation.MINUS -> minus()
-            Operation.PLUS -> plus()
+            Operation.DIVIDE -> {
+                lastNumber = binding.tvResult.text.toString().toDouble()
+
+                if (lastNumber == 0.0) {
+                    Toast.makeText(
+                        applicationContext, "The divisor cannot be 0", Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    firstNumber /= lastNumber
+                    binding.tvResult.text = mFormatter.format(firstNumber)
+                }
+            }
+
+            Operation.MULTI -> {
+                lastNumber = binding.tvResult.text.toString().toDouble()
+                firstNumber *= lastNumber
+                binding.tvResult.text = mFormatter.format(firstNumber)
+            }
+
+            Operation.MINUS -> {
+                lastNumber = binding.tvResult.text.toString().toDouble()
+                firstNumber -= lastNumber
+                binding.tvResult.text = mFormatter.format(firstNumber)
+            }
+
+            Operation.PLUS -> {
+                lastNumber = binding.tvResult.text.toString().toDouble()
+                firstNumber += lastNumber
+                binding.tvResult.text = mFormatter.format(firstNumber)
+            }
+
             Operation.NULL -> firstNumber = binding.tvResult.text.toString().toDouble()
-        }
-    }
-
-    private fun plus() {
-        lastNumber = binding.tvResult.text.toString().toDouble()
-        firstNumber += lastNumber
-        binding.tvResult.text = mFormatter.format(firstNumber)
-    }
-
-    private fun minus() {
-        lastNumber = binding.tvResult.text.toString().toDouble()
-        firstNumber -= lastNumber
-        binding.tvResult.text = mFormatter.format(firstNumber)
-    }
-
-    private fun multi() {
-        lastNumber = binding.tvResult.text.toString().toDouble()
-        firstNumber *= lastNumber
-        binding.tvResult.text = mFormatter.format(firstNumber)
-    }
-
-    private fun divide() {
-        lastNumber = binding.tvResult.text.toString().toDouble()
-
-        if (lastNumber == 0.0) {
-            Toast.makeText(applicationContext, "Cannot divide by 0", Toast.LENGTH_SHORT).show()
-        } else {
-            firstNumber /= lastNumber
-            binding.tvResult.text = mFormatter.format(firstNumber)
         }
     }
 
