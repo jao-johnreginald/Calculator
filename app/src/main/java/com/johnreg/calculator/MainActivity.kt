@@ -164,7 +164,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (lastNumber == 0.0) {
                     Toast.makeText(
-                        applicationContext, "The divisor cannot be 0", Toast.LENGTH_SHORT
+                        applicationContext, "The divisor cannot be zero", Toast.LENGTH_LONG
                     ).show()
                 } else {
                     firstNumber /= lastNumber
