@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var firstNumber: Double = 0.0
     private var lastNumber: Double = 0.0
 
-    private var status: Operation? = null
+    private var status: Operation = Operation.NULL
     private var operator: Boolean = false
 
     private val mFormatter = DecimalFormat("######.######")
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onButtonAcClicked() {
         number = null
-        status = null
+        status = Operation.NULL
         binding.tvResult.text = getString(R.string.zero)
         binding.tvHistory.text = null
         firstNumber = 0.0
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
                 firstNumber = number!!.toDouble()
                 lastNumber = 0.0
-                status = null
+                status = Operation.NULL
                 binding.tvHistory.text = null
             }
 
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() {
             Operation.MULTI -> multi()
             Operation.MINUS -> minus()
             Operation.PLUS -> plus()
-            null -> firstNumber = binding.tvResult.text.toString().toDouble()
+            Operation.NULL -> firstNumber = binding.tvResult.text.toString().toDouble()
         }
     }
 
