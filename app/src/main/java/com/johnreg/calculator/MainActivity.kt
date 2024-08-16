@@ -12,19 +12,19 @@ class MainActivity : AppCompatActivity() {
 
     private var number: String? = null
 
-    private var firstNumber: Double = 0.0
-    private var lastNumber: Double = 0.0
+    private var firstNumber = 0.0
+    private var lastNumber = 0.0
 
-    private var status: Operation = Operation.NULL
+    private var status = Operation.NULL
 
     private val mFormatter = DecimalFormat("######.######")
 
-    private var history: String = ""
-    private var currentResult: String = ""
+    private var history = ""
+    private var currentResult = ""
 
-    private var operatorControl: Boolean = false
-    private var dotControl: Boolean = true
-    private var equalsControl: Boolean = false
+    private var operatorControl = false
+    private var dotControl = true
+    private var equalsControl = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
