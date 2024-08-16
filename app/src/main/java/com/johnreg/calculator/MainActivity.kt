@@ -174,18 +174,21 @@ class MainActivity : AppCompatActivity() {
 
             Operation.MULTI -> {
                 lastNumber = resultTextToDouble
+
                 firstNumber *= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.MINUS -> {
                 lastNumber = resultTextToDouble
+
                 firstNumber -= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.PLUS -> {
                 lastNumber = resultTextToDouble
+
                 firstNumber += lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
