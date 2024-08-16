@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var currentResult: String = ""
 
     private var dotControl: Boolean = true
+    private var equalsControl: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -167,11 +168,22 @@ class MainActivity : AppCompatActivity() {
 
             operator = false
             dotControl = true
+            equalsControl = true
         }
 
         binding.btnDot.setOnClickListener {
             if (dotControl) {
-                number = if (number == null) "0." else "$number."
+                number = if (number == null) {
+                    "0."
+                } else if (equalsControl) {
+                    if (binding.tvResult.text.toString().contains(".")) {
+                        binding.tvResult.text.toString()
+                    } else {
+                        binding.tvResult.text.toString().plus(".")
+                    }
+                } else {
+                    "$number."
+                }
                 binding.tvResult.text = number
             }
 
@@ -187,17 +199,30 @@ class MainActivity : AppCompatActivity() {
         firstNumber = 0.0
         lastNumber = 0.0
         dotControl = true
+        equalsControl = false
     }
 
     private fun onNumberClicked(clickedNumber: String) {
         if (number == null) {
             number = clickedNumber
+        } else if (equalsControl) {
+            number = if (dotControl) {
+                clickedNumber
+            } else {
+                binding.tvResult.text.toString().plus(clickedNumber)
+            }
+
+            firstNumber = number!!.toDouble()
+            lastNumber = 0.0
+            status = null
+            binding.tvHistory.text = null
         } else {
             number += clickedNumber
         }
 
         binding.tvResult.text = number
         operator = true
+        equalsControl = false
     }
 
     private fun plus() {
