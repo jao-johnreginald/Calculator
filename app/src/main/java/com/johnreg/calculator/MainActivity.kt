@@ -92,17 +92,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDot.setOnClickListener {
             if (dotControl) {
-                number = if (number == null) {
-                    "0."
-                } else if (equalsControl) {
-                    if (binding.tvResult.text.toString().contains(".")) {
+                number = when {
+                    number == null -> "0."
+                    equalsControl -> if (binding.tvResult.text.toString().contains(".")) {
                         binding.tvResult.text.toString()
                     } else {
                         binding.tvResult.text.toString().plus(".")
                     }
-                } else {
-                    "$number."
+
+                    else -> "$number."
                 }
+
                 binding.tvResult.text = number
             }
 
@@ -122,21 +122,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onNumberClicked(clickedNumber: String) {
-        if (number == null) {
-            number = clickedNumber
-        } else if (equalsControl) {
-            number = if (dotControl) {
-                clickedNumber
-            } else {
-                binding.tvResult.text.toString().plus(clickedNumber)
+        when {
+            number == null -> number = clickedNumber
+            equalsControl -> {
+                number = if (dotControl) {
+                    clickedNumber
+                } else {
+                    binding.tvResult.text.toString().plus(clickedNumber)
+                }
+
+                firstNumber = number!!.toDouble()
+                lastNumber = 0.0
+                status = null
+                binding.tvHistory.text = null
             }
 
-            firstNumber = number!!.toDouble()
-            lastNumber = 0.0
-            status = null
-            binding.tvHistory.text = null
-        } else {
-            number += clickedNumber
+            else -> number += clickedNumber
         }
 
         binding.tvResult.text = number
