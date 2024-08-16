@@ -16,13 +16,13 @@ class MainActivity : AppCompatActivity() {
     private var lastNumber: Double = 0.0
 
     private var status: Operation = Operation.NULL
-    private var operatorControl: Boolean = false
 
     private val mFormatter = DecimalFormat("######.######")
 
     private var history: String = ""
     private var currentResult: String = ""
 
+    private var operatorControl: Boolean = false
     private var dotControl: Boolean = true
     private var equalsControl: Boolean = false
 
