@@ -61,91 +61,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnDivide.setOnClickListener {
-            history = binding.tvHistory.text.toString()
-            currentResult = binding.tvResult.text.toString()
-
-            // The plus method of the String class is used to concatenate 2 String expressions together
-            binding.tvHistory.text = history.plus(currentResult).plus("/")
-
-            if (operator) {
-                when (status) {
-                    "divide" -> divide()
-                    "multi" -> multi()
-                    "minus" -> minus()
-                    "plus" -> plus()
-                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
-                }
-            }
-
-            status = "divide"
-            operator = false
-            number = null
-            dotControl = true
-        }
-        binding.btnMulti.setOnClickListener {
-            history = binding.tvHistory.text.toString()
-            currentResult = binding.tvResult.text.toString()
-
-            binding.tvHistory.text = history.plus(currentResult).plus("*")
-
-            if (operator) {
-                when (status) {
-                    "divide" -> divide()
-                    "multi" -> multi()
-                    "minus" -> minus()
-                    "plus" -> plus()
-                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
-                }
-            }
-
-            status = "multi"
-            operator = false
-            number = null
-            dotControl = true
-        }
-        binding.btnMinus.setOnClickListener {
-            history = binding.tvHistory.text.toString()
-            currentResult = binding.tvResult.text.toString()
-
-            binding.tvHistory.text = history.plus(currentResult).plus("-")
-
-            if (operator) {
-                when (status) {
-                    "divide" -> divide()
-                    "multi" -> multi()
-                    "minus" -> minus()
-                    "plus" -> plus()
-                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
-                }
-            }
-
-            status = "minus"
-            operator = false
-            number = null
-            dotControl = true
-        }
-        binding.btnPlus.setOnClickListener {
-            history = binding.tvHistory.text.toString()
-            currentResult = binding.tvResult.text.toString()
-
-            binding.tvHistory.text = history.plus(currentResult).plus("+")
-
-            if (operator) {
-                when (status) {
-                    "divide" -> divide()
-                    "multi" -> multi()
-                    "minus" -> minus()
-                    "plus" -> plus()
-                    else -> firstNumber = binding.tvResult.text.toString().toDouble()
-                }
-            }
-
-            status = "plus"
-            operator = false
-            number = null
-            dotControl = true
-        }
+        binding.btnDivide.setOnClickListener { onOperationClicked("/", "divide") }
+        binding.btnMulti.setOnClickListener { onOperationClicked("*", "multi") }
+        binding.btnMinus.setOnClickListener { onOperationClicked("-", "minus") }
+        binding.btnPlus.setOnClickListener { onOperationClicked("+", "plus") }
 
         binding.btnEquals.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -223,6 +142,29 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.text = number
         operator = true
         equalsControl = false
+    }
+
+    private fun onOperationClicked(symbol: String, operation: String) {
+        history = binding.tvHistory.text.toString()
+        currentResult = binding.tvResult.text.toString()
+
+        // The plus method of the String class is used to concatenate 2 String expressions together
+        binding.tvHistory.text = history.plus(currentResult).plus(symbol)
+
+        if (operator) {
+            when (status) {
+                "divide" -> divide()
+                "multi" -> multi()
+                "minus" -> minus()
+                "plus" -> plus()
+                else -> firstNumber = binding.tvResult.text.toString().toDouble()
+            }
+        }
+
+        status = operation
+        operator = false
+        number = null
+        dotControl = true
     }
 
     private fun plus() {
