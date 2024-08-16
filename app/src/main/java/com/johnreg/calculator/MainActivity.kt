@@ -71,13 +71,7 @@ class MainActivity : AppCompatActivity() {
             currentResult = binding.tvResult.text.toString()
 
             if (operator) {
-                when (status) {
-                    Operation.DIVIDE -> divide()
-                    Operation.MULTI -> multi()
-                    Operation.MINUS -> minus()
-                    Operation.PLUS -> plus()
-                    null -> firstNumber = binding.tvResult.text.toString().toDouble()
-                }
+                performOperation()
 
                 binding.tvHistory.text = history
                     .plus(currentResult)
@@ -153,19 +147,23 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistory.text = history.plus(currentResult).plus(symbol)
 
         if (operator) {
-            when (status) {
-                Operation.DIVIDE -> divide()
-                Operation.MULTI -> multi()
-                Operation.MINUS -> minus()
-                Operation.PLUS -> plus()
-                null -> firstNumber = binding.tvResult.text.toString().toDouble()
-            }
+            performOperation()
         }
 
         status = operation
         operator = false
         number = null
         dotControl = true
+    }
+
+    private fun performOperation() {
+        when (status) {
+            Operation.DIVIDE -> divide()
+            Operation.MULTI -> multi()
+            Operation.MINUS -> minus()
+            Operation.PLUS -> plus()
+            null -> firstNumber = binding.tvResult.text.toString().toDouble()
+        }
     }
 
     private fun plus() {
