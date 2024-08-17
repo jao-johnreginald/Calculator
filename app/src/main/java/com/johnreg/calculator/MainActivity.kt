@@ -10,21 +10,20 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var number: String? = null
+    private val mFormatter = DecimalFormat("######.######")
 
     private var firstNumber = 0.0
     private var lastNumber = 0.0
 
+    private var stringNumber: String? = null
     private var status = Operation.NULL
-
-    private val mFormatter = DecimalFormat("######.######")
-
-    private var history = ""
-    private var currentResult = ""
 
     private var operatorControl = false
     private var dotControl = true
     private var equalsControl = false
+
+    private var stringHistory = ""
+    private var stringResult = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,26 +55,26 @@ class MainActivity : AppCompatActivity() {
         binding.btnAc.setOnClickListener { onAcClicked() }
 
         binding.btnDel.setOnClickListener {
-            number?.let {
+            stringNumber?.let {
                 if (it.length == 1) {
                     onAcClicked()
                 } else {
-                    number = it.substring(0, it.length - 1)
-                    binding.tvResult.text = number
-                    dotControl = !number!!.contains(".")
+                    stringNumber = it.substring(0, it.length - 1)
+                    binding.tvResult.text = stringNumber
+                    dotControl = !stringNumber!!.contains(".")
                 }
             }
         }
 
         binding.btnEquals.setOnClickListener {
-            history = binding.tvHistory.text.toString()
-            currentResult = binding.tvResult.text.toString()
+            stringHistory = binding.tvHistory.text.toString()
+            stringResult = binding.tvResult.text.toString()
 
             if (operatorControl) {
                 performOperation()
 
-                binding.tvHistory.text = history
-                    .plus(currentResult)
+                binding.tvHistory.text = stringHistory
+                    .plus(stringResult)
                     .plus("=")
                     .plus(binding.tvResult.text.toString())
             }
@@ -87,18 +86,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDot.setOnClickListener {
             if (dotControl) {
-                number = when {
-                    number == null -> "0."
+                stringNumber = when {
+                    stringNumber == null -> "0."
+
                     equalsControl -> if (binding.tvResult.text.toString().contains(".")) {
                         binding.tvResult.text.toString()
                     } else {
                         binding.tvResult.text.toString().plus(".")
                     }
 
-                    else -> "$number."
+                    else -> "$stringNumber."
                 }
 
-                binding.tvResult.text = number
+                binding.tvResult.text = stringNumber
             }
 
             dotControl = false
@@ -107,42 +107,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNumberClicked(clickedNumber: String) {
         when {
-            number == null -> number = clickedNumber
+            stringNumber == null -> stringNumber = clickedNumber
+
             equalsControl -> {
-                number = if (dotControl) {
+                stringNumber = if (dotControl) {
                     clickedNumber
                 } else {
                     binding.tvResult.text.toString().plus(clickedNumber)
                 }
 
-                firstNumber = number!!.toDouble()
+                binding.tvHistory.text = null
+                firstNumber = stringNumber!!.toDouble()
                 lastNumber = 0.0
                 status = Operation.NULL
-                binding.tvHistory.text = null
             }
 
-            else -> number += clickedNumber
+            else -> stringNumber += clickedNumber
         }
 
-        binding.tvResult.text = number
+        binding.tvResult.text = stringNumber
         operatorControl = true
         equalsControl = false
     }
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
-        history = binding.tvHistory.text.toString()
-        currentResult = binding.tvResult.text.toString()
+        stringHistory = binding.tvHistory.text.toString()
+        stringResult = binding.tvResult.text.toString()
 
         // The plus method of the String class is used to concatenate 2 String expressions together
-        binding.tvHistory.text = history.plus(currentResult).plus(symbol)
+        binding.tvHistory.text = stringHistory.plus(stringResult).plus(symbol)
 
-        if (operatorControl) {
-            performOperation()
-        }
+        if (operatorControl) performOperation()
 
+        stringNumber = null
         status = operation
+
         operatorControl = false
-        number = null
         dotControl = true
     }
 
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistory.text = null
         firstNumber = 0.0
         lastNumber = 0.0
-        number = null
+        stringNumber = null
         status = Operation.NULL
         dotControl = true
         equalsControl = false
@@ -159,6 +159,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun performOperation() {
         val resultTextToDouble = binding.tvResult.text.toString().toDouble()
+
         when (status) {
             Operation.DIVIDE -> {
                 lastNumber = resultTextToDouble
