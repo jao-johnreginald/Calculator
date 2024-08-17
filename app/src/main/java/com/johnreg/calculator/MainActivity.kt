@@ -48,7 +48,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnEight.setOnClickListener { onNumberClicked("8") }
         binding.btnNine.setOnClickListener { onNumberClicked("9") }
 
+        binding.btnDivide.setOnClickListener { onOperatorClicked("/", Operation.DIVIDE) }
+        binding.btnMulti.setOnClickListener { onOperatorClicked("*", Operation.MULTI) }
+        binding.btnMinus.setOnClickListener { onOperatorClicked("-", Operation.MINUS) }
+        binding.btnPlus.setOnClickListener { onOperatorClicked("+", Operation.PLUS) }
+
         binding.btnAc.setOnClickListener { onAcClicked() }
+
         binding.btnDel.setOnClickListener {
             number?.let {
                 if (it.length == 1) {
@@ -60,11 +66,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        binding.btnDivide.setOnClickListener { onOperatorClicked("/", Operation.DIVIDE) }
-        binding.btnMulti.setOnClickListener { onOperatorClicked("*", Operation.MULTI) }
-        binding.btnMinus.setOnClickListener { onOperatorClicked("-", Operation.MINUS) }
-        binding.btnPlus.setOnClickListener { onOperatorClicked("+", Operation.PLUS) }
 
         binding.btnEquals.setOnClickListener {
             history = binding.tvHistory.text.toString()
@@ -102,17 +103,6 @@ class MainActivity : AppCompatActivity() {
 
             dotControl = false
         }
-    }
-
-    private fun onAcClicked() {
-        number = null
-        status = Operation.NULL
-        binding.tvResult.text = getString(R.string.zero)
-        binding.tvHistory.text = null
-        firstNumber = 0.0
-        lastNumber = 0.0
-        dotControl = true
-        equalsControl = false
     }
 
     private fun onNumberClicked(clickedNumber: String) {
@@ -154,6 +144,17 @@ class MainActivity : AppCompatActivity() {
         operatorControl = false
         number = null
         dotControl = true
+    }
+
+    private fun onAcClicked() {
+        binding.tvResult.text = getString(R.string.zero)
+        binding.tvHistory.text = null
+        firstNumber = 0.0
+        lastNumber = 0.0
+        number = null
+        status = Operation.NULL
+        dotControl = true
+        equalsControl = false
     }
 
     private fun performOperation() {
