@@ -86,13 +86,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDot.setOnClickListener {
             if (dotControl) {
+                val resultText = binding.tvResult.text.toString()
+
                 stringNumber = when {
                     stringNumber == null -> "0."
 
-                    equalsControl -> if (binding.tvResult.text.toString().contains(".")) {
-                        binding.tvResult.text.toString()
+                    equalsControl -> if (resultText.contains(".")) {
+                        resultText
                     } else {
-                        binding.tvResult.text.toString().plus(".")
+                        resultText.plus(".")
                     }
 
                     else -> "$stringNumber."
