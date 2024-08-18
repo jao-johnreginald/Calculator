@@ -107,6 +107,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    When the user clicks on any number, we will first check the variable number
+    If the number variable is null, it means there is no number on the screen
+    And the number that the user clicks will appear on the screen
+    But if the variable number is not null
+    All it means there are already entered numbers on the screen
+    And the number the user clicks will be added to the end of these numbers
+     */
     private fun onNumberClicked(clickedNumber: String) {
         when {
             stringNumber == null -> stringNumber = clickedNumber
