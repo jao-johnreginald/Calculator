@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnDel.setOnClickListener {
             stringNumber?.let {
                 if (it.length == 1) {
-                    onAcClicked()
+                    binding.tvResult.text = getString(R.string.zero)
+                    stringNumber = null
                 } else {
                     stringNumber = it.substring(0, it.length - 1)
                     binding.tvResult.text = stringNumber
