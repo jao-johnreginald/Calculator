@@ -156,17 +156,6 @@ class MainActivity : AppCompatActivity() {
         dotControl = true
     }
 
-    private fun onAcClicked() {
-        binding.tvResult.text = getString(R.string.zero)
-        binding.tvHistory.text = null
-        firstNumber = 0.0
-        lastNumber = 0.0
-        stringNumber = null
-        status = Operation.NULL
-        dotControl = true
-        equalsControl = false
-    }
-
     /*
     The lastNumber will always keep the last value printed on the screen
     So the new value is entered on the screen and any of the operators are clicked
@@ -205,6 +194,20 @@ class MainActivity : AppCompatActivity() {
 
             Operation.NULL -> firstNumber = lastNumber
         }
+    }
+
+    private fun onAcClicked() {
+        binding.tvResult.text = getString(R.string.zero)
+        binding.tvHistory.text = null
+        firstNumber = 0.0
+        lastNumber = 0.0
+        stringNumber = null
+        status = Operation.NULL
+        operatorControl = false
+        dotControl = true
+        equalsControl = false
+        stringHistory = ""
+        stringResult = ""
     }
 
 }
