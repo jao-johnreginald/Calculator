@@ -167,6 +167,12 @@ class MainActivity : AppCompatActivity() {
         equalsControl = false
     }
 
+    /*
+    The lastNumber will always keep the last value printed on the screen
+    So the new value is entered on the screen and any of the operators are clicked
+    The values in the lastNumber will be transferred to the firstNumber
+    And the new value of the lastNumber will be the number that is now on the screen
+     */
     private fun performOperation() {
         lastNumber = binding.tvResult.text.toString().toDouble()
 
