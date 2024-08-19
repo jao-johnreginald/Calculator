@@ -169,8 +169,10 @@ class MainActivity : AppCompatActivity() {
             Operation.DIVIDE -> {
                 if (lastNumber == 0.0) {
                     Toast.makeText(
-                        applicationContext, "The divisor cannot be zero", Toast.LENGTH_LONG
+                        applicationContext, "THE DIVISOR CANNOT BE ZERO", Toast.LENGTH_LONG
                     ).show()
+
+                    onAcClicked()
                 } else {
                     firstNumber /= lastNumber
                     binding.tvResult.text = mFormatter.format(firstNumber)
