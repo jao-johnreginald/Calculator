@@ -119,16 +119,16 @@ class MainActivity : AppCompatActivity() {
     And the number the user clicks will be added to the end of these numbers
      */
     private fun onNumberClicked(clickedNumber: String) {
-        when {
-            stringNumber == null -> stringNumber = clickedNumber
-
-            equalsControl -> {
+        stringNumber = if (stringNumber == null) {
+            clickedNumber
+        } else {
+            if (equalsControl) {
                 binding.tvHistory.text = null
-                stringNumber = clickedNumber
                 status = Operation.NULL
+                clickedNumber
+            } else {
+                stringNumber + clickedNumber
             }
-
-            else -> stringNumber += clickedNumber
         }
 
         binding.tvResult.text = stringNumber
