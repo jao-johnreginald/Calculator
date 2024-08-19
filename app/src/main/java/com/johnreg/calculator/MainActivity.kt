@@ -30,12 +30,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setListenersAndTexts()
+        setOnClickListenerAllButtons()
     }
 
-    private fun setListenersAndTexts() {
-        binding.tvResult.text = getString(R.string.zero)
-
+    private fun setOnClickListenerAllButtons() {
         binding.btnZero.setOnClickListener { onNumberClicked("0") }
         binding.btnOne.setOnClickListener { onNumberClicked("1") }
         binding.btnTwo.setOnClickListener { onNumberClicked("2") }
