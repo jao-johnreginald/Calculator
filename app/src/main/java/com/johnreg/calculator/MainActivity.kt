@@ -168,12 +168,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performOperation() {
-        val resultTextToDouble = binding.tvResult.text.toString().toDouble()
+        lastNumber = binding.tvResult.text.toString().toDouble()
 
         when (status) {
             Operation.DIVIDE -> {
-                lastNumber = resultTextToDouble
-
                 if (lastNumber == 0.0) {
                     Toast.makeText(
                         applicationContext, "The divisor cannot be zero", Toast.LENGTH_LONG
@@ -185,27 +183,21 @@ class MainActivity : AppCompatActivity() {
             }
 
             Operation.MULTI -> {
-                lastNumber = resultTextToDouble
-
                 firstNumber *= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.MINUS -> {
-                lastNumber = resultTextToDouble
-
                 firstNumber -= lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
             Operation.PLUS -> {
-                lastNumber = resultTextToDouble
-
                 firstNumber += lastNumber
                 binding.tvResult.text = mFormatter.format(firstNumber)
             }
 
-            Operation.NULL -> firstNumber = resultTextToDouble
+            Operation.NULL -> firstNumber = lastNumber
         }
     }
 
