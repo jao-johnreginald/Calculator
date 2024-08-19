@@ -121,11 +121,11 @@ class MainActivity : AppCompatActivity() {
     And the number the user clicks will be added to the end of these numbers
      */
     private fun onNumberClicked(clickedNumber: String) {
-        stringNumber = if (stringNumber == null) {
+        stringNumber = if (equalsControl) {
+            onAcClicked()
             clickedNumber
         } else {
-            if (equalsControl) {
-                onAcClicked()
+            if (stringNumber == null) {
                 clickedNumber
             } else {
                 stringNumber + clickedNumber
