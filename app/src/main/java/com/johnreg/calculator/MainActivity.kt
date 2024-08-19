@@ -123,15 +123,8 @@ class MainActivity : AppCompatActivity() {
             stringNumber == null -> stringNumber = clickedNumber
 
             equalsControl -> {
-                stringNumber = if (dotControl) {
-                    clickedNumber
-                } else {
-                    binding.tvResult.text.toString().plus(clickedNumber)
-                }
-
                 binding.tvHistory.text = null
-                firstNumber = stringNumber!!.toDouble()
-                lastNumber = 0.0
+                stringNumber = clickedNumber
                 status = Operation.NULL
             }
 
