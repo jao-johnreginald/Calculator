@@ -138,6 +138,11 @@ class MainActivity : AppCompatActivity() {
         val historyText = binding.tvHistory.text.toString()
         var resultText = binding.tvResult.text.toString()
 
+        if (equalsControl) {
+            binding.tvHistory.text = resultText.plus(symbol)
+            equalsControl = false
+        }
+
         // If the last character is a dot, remove it
         if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
 
@@ -145,8 +150,6 @@ class MainActivity : AppCompatActivity() {
             binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
             performOperation()
         }
-
-        if (equalsControl) binding.tvHistory.text = resultText.plus(symbol)
 
         stringNumber = null
         status = operation
