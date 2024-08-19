@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                     binding.tvResult.text = getString(R.string.zero)
                     stringNumber = null
                 } else {
-                    stringNumber = it.substring(0, it.length - 1)
+                    stringNumber = it.dropLast(1)
                     binding.tvResult.text = stringNumber
                     dotControl = !stringNumber!!.contains(".")
                 }
