@@ -125,8 +125,7 @@ class MainActivity : AppCompatActivity() {
             clickedNumber
         } else {
             if (equalsControl) {
-                binding.tvHistory.text = null
-                status = Operation.NULL
+                onAcClicked()
                 clickedNumber
             } else {
                 stringNumber + clickedNumber
@@ -135,7 +134,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvResult.text = stringNumber
         operatorControl = true
-        equalsControl = false
     }
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
