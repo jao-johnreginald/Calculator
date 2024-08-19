@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
     private var dotControl = true
     private var equalsControl = false
 
-    private var stringHistory = ""
-    private var stringResult = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -67,11 +64,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnEquals.setOnClickListener {
             if (operatorControl) {
-                stringHistory = binding.tvHistory.text.toString()
-                stringResult = binding.tvResult.text.toString()
+                val historyText = binding.tvHistory.text.toString()
+                val resultText = binding.tvResult.text.toString()
 
                 // plus() - used to concatenate 2 String expressions together
-                binding.tvHistory.text = stringHistory.plus(stringResult).plus("=")
+                binding.tvHistory.text = historyText.plus(resultText).plus("=")
                 performOperation()
             }
 
@@ -138,10 +135,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
         if (operatorControl) {
-            stringHistory = binding.tvHistory.text.toString()
-            stringResult = binding.tvResult.text.toString()
+            val historyText = binding.tvHistory.text.toString()
+            val resultText = binding.tvResult.text.toString()
 
-            binding.tvHistory.text = stringHistory.plus(stringResult).plus(symbol)
+            binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
             performOperation()
         }
 
@@ -187,8 +184,6 @@ class MainActivity : AppCompatActivity() {
         operatorControl = false
         dotControl = true
         equalsControl = false
-        stringHistory = ""
-        stringResult = ""
     }
 
 }
