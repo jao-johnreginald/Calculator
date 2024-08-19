@@ -164,36 +164,19 @@ class MainActivity : AppCompatActivity() {
     private fun performOperation() {
         lastNumber = binding.tvResult.text.toString().toDouble()
 
-        when (status) {
-            Operation.DIVIDE -> {
-                if (lastNumber == 0.0) {
-                    Toast.makeText(
-                        applicationContext, "THE DIVISOR CANNOT BE ZERO", Toast.LENGTH_LONG
-                    ).show()
+        firstNumber = when (status) {
+            Operation.DIVIDE -> firstNumber / lastNumber
+            Operation.MULTI -> firstNumber * lastNumber
+            Operation.MINUS -> firstNumber - lastNumber
+            Operation.PLUS -> firstNumber + lastNumber
+            Operation.NULL -> lastNumber
+        }
 
-                    onAcClicked()
-                } else {
-                    firstNumber /= lastNumber
-                    binding.tvResult.text = mFormatter.format(firstNumber)
-                }
-            }
-
-            Operation.MULTI -> {
-                firstNumber *= lastNumber
-                binding.tvResult.text = mFormatter.format(firstNumber)
-            }
-
-            Operation.MINUS -> {
-                firstNumber -= lastNumber
-                binding.tvResult.text = mFormatter.format(firstNumber)
-            }
-
-            Operation.PLUS -> {
-                firstNumber += lastNumber
-                binding.tvResult.text = mFormatter.format(firstNumber)
-            }
-
-            Operation.NULL -> firstNumber = lastNumber
+        if (firstNumber.isFinite()) {
+            binding.tvResult.text = mFormatter.format(firstNumber)
+        } else {
+            Toast.makeText(this, "THE DIVISOR CANNOT BE ZERO", Toast.LENGTH_LONG).show()
+            onAcClicked()
         }
     }
 
