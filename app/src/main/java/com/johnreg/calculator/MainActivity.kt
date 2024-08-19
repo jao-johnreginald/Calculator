@@ -18,8 +18,14 @@ class MainActivity : AppCompatActivity() {
     private var stringNumber: String? = null
     private var status = Operation.NULL
 
+    // btnEquals & onOperatorClicked() will only performOperation() if operatorControl is true
+    // true - numbers | false - AC, Equals, operators
     private var operatorControl = false
+
+    // btnDot will only work if dotControl is true
+    // true - AC, DEL, Equals, operators | false - Dot
     private var dotControl = true
+
     private var equalsControl = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
