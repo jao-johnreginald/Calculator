@@ -58,20 +58,18 @@ class MainActivity : AppCompatActivity() {
         binding.btnAc.setOnClickListener { onAcClicked() }
 
         binding.btnDel.setOnClickListener {
-            stringNumber?.let {
-                if (it.length == 1) {
-                    binding.tvResult.text = getString(R.string.zero)
-                    stringNumber = null
-                } else {
-                    stringNumber = it.dropLast(1)
-                    binding.tvResult.text = stringNumber
-                    dotControl = !stringNumber!!.contains(".")
+            if (equalsControl) onAcClicked() else {
+                stringNumber?.let { number ->
+                    if (number.length <= 1) {
+                        stringNumber = null
+                        binding.tvResult.text = getString(R.string.zero)
+                    } else {
+                        stringNumber = number.dropLast(1)
+                        dotControl = !stringNumber!!.contains(".")
+                        binding.tvResult.text = stringNumber
+                    }
                 }
             }
-
-            if (stringNumber == null) binding.tvResult.text = getString(R.string.zero)
-
-            if (equalsControl) onAcClicked()
         }
 
         binding.btnEquals.setOnClickListener {
