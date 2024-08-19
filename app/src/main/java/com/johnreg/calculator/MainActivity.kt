@@ -66,6 +66,10 @@ class MainActivity : AppCompatActivity() {
                     dotControl = !stringNumber!!.contains(".")
                 }
             }
+
+            if (stringNumber == null) binding.tvResult.text = getString(R.string.zero)
+
+            if (equalsControl) onAcClicked()
         }
 
         binding.btnEquals.setOnClickListener {
