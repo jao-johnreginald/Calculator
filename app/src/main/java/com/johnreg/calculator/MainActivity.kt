@@ -66,16 +66,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEquals.setOnClickListener {
-            stringHistory = binding.tvHistory.text.toString()
-            stringResult = binding.tvResult.text.toString()
-
             if (operatorControl) {
-                performOperation()
+                stringHistory = binding.tvHistory.text.toString()
+                stringResult = binding.tvResult.text.toString()
 
-                binding.tvHistory.text = stringHistory
-                    .plus(stringResult)
-                    .plus("=")
-                    .plus(binding.tvResult.text.toString())
+                // plus() - used to concatenate 2 String expressions together
+                binding.tvHistory.text = stringHistory.plus(stringResult).plus("=")
+                performOperation()
             }
 
             operatorControl = false
@@ -140,13 +137,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
-        stringHistory = binding.tvHistory.text.toString()
-        stringResult = binding.tvResult.text.toString()
+        if (operatorControl) {
+            stringHistory = binding.tvHistory.text.toString()
+            stringResult = binding.tvResult.text.toString()
 
-        // The plus method of the String class is used to concatenate 2 String expressions together
-        binding.tvHistory.text = stringHistory.plus(stringResult).plus(symbol)
-
-        if (operatorControl) performOperation()
+            binding.tvHistory.text = stringHistory.plus(stringResult).plus(symbol)
+            performOperation()
+        }
 
         stringNumber = null
         status = operation
