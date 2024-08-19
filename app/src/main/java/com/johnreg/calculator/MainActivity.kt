@@ -134,13 +134,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
-        if (operatorControl) {
-            val historyText = binding.tvHistory.text.toString()
-            val resultText = binding.tvResult.text.toString()
+        val historyText = binding.tvHistory.text.toString()
+        val resultText = binding.tvResult.text.toString()
 
+        if (operatorControl) {
             binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
             performOperation()
         }
+
+        if (equalsControl) binding.tvHistory.text = resultText.plus(symbol)
 
         stringNumber = null
         status = operation
