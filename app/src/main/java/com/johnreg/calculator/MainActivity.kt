@@ -141,7 +141,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
         val historyText = binding.tvHistory.text.toString()
-        val resultText = binding.tvResult.text.toString()
+        var resultText = binding.tvResult.text.toString()
+
+        // If the last character is a dot, remove it
+        if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
 
         if (operatorControl) {
             binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
