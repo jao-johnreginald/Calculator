@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var dotControl = true
 
     // onAcClicked() if AC, DEL, Dot, numbers are clicked after btnEquals is clicked
-    // true - Equals | false - onAcClicked() from AC, DEL, Dot, numbers
+    // true - Equals | false - operators, onAcClicked() from AC, DEL, Dot, numbers
     private var equalsControl = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
