@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDel.setOnClickListener {
             if (equalsControl) onAcClicked() else {
-                stringNumber?.let { number ->
-                    if (number.length <= 1) {
+                if (stringNumber == null) binding.tvResult.text = getString(R.string.zero) else {
+                    if (stringNumber!!.length <= 1) {
                         stringNumber = null
                         binding.tvResult.text = getString(R.string.zero)
                     } else {
-                        stringNumber = number.dropLast(1)
+                        stringNumber = stringNumber!!.dropLast(1)
                         dotControl = !stringNumber!!.contains(".")
                         binding.tvResult.text = stringNumber
                     }
