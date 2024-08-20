@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
     // true - numbers | false - AC, Equals, operators
     private var operatorControl = false
 
-    // btnDot will only work if dotControl is true
-    // true - AC, DEL, Equals, operators | false - Dot
-    private var dotControl = true
-
     // onAcClicked() if AC, DEL, Dot, numbers are clicked after btnEquals is clicked
     // true - Equals | false - operators, onAcClicked() from AC, DEL, Dot, numbers
     private var equalsControl = false
+
+    // btnDot will only work if dotControl is true
+    // true - AC, DEL, Equals, operators | false - Dot
+    private var dotControl = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,7 +142,6 @@ class MainActivity : AppCompatActivity() {
             equalsControl = false
         }
 
-        // If the last character is a dot, remove it
         if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
 
         if (operatorControl) {
@@ -190,8 +189,8 @@ class MainActivity : AppCompatActivity() {
         stringNumber = null
         status = Operation.NULL
         operatorControl = false
-        dotControl = true
         equalsControl = false
+        dotControl = true
     }
 
 }
