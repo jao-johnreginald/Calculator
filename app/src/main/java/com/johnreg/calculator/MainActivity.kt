@@ -75,16 +75,19 @@ class MainActivity : AppCompatActivity() {
         binding.btnEquals.setOnClickListener {
             if (operatorControl) {
                 val historyText = binding.tvHistory.text.toString()
-                val resultText = binding.tvResult.text.toString()
+
+                // If the last character is a dot, remove it
+                var resultText = binding.tvResult.text.toString()
+                if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
 
                 // plus() - used to concatenate 2 String expressions together
                 binding.tvHistory.text = historyText.plus(resultText).plus("=")
                 performOperation()
-            }
 
-            operatorControl = false
-            dotControl = true
-            equalsControl = true
+                operatorControl = false
+                equalsControl = true
+                dotControl = true
+            }
         }
 
         binding.btnDot.setOnClickListener {
