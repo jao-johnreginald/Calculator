@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var status = Operation.NULL
 
     // btnEquals & onOperatorClicked() will only performOperation() if operatorControl is true
-    // true - numbers | false - AC, Equals, operators
+    // true - Dot, numbers | false - AC, Equals, operators
     private var operatorControl = false
 
     // onAcClicked() if AC, DEL, Dot, numbers are clicked after btnEquals is clicked
@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 binding.tvResult.text = stringNumber
+                operatorControl = true
                 dotControl = false
             }
         }
