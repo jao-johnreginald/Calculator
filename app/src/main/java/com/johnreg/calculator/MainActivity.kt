@@ -137,24 +137,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
         val historyText = binding.tvHistory.text.toString()
-        var resultText = binding.tvResult.text.toString()
 
+        var resultText = binding.tvResult.text.toString()
+        if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
+
+        // This will be skipped if equalsControl is true (operatorControl = false)
+        if (operatorControl) {
+            binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
+            performOperation()
+
+            status = operation
+            operatorControl = false
+        }
+
+        // This will be skipped if operatorControl is true (equalsControl = false)
         if (equalsControl) {
             binding.tvHistory.text = resultText.plus(symbol)
             equalsControl = false
         }
 
-        if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
-
-        if (operatorControl) {
-            binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
-            performOperation()
-        }
-
         stringNumber = null
-        status = operation
-
-        operatorControl = false
         dotControl = true
     }
 
