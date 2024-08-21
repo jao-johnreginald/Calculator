@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tvResult.text = getString(R.string.zero)
         setOnClickListenerAllButtons()
     }
 
