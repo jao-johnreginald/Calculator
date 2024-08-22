@@ -153,6 +153,8 @@ class MainActivity : AppCompatActivity() {
         // This will be skipped if isOperationDoable is true (isEqualsClicked = false)
         if (isEqualsClicked) {
             binding.tvHistory.text = resultText.plus(symbol)
+
+            status = operation
             isEqualsClicked = false
         }
 
