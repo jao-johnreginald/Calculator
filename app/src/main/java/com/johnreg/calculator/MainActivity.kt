@@ -18,17 +18,17 @@ class MainActivity : AppCompatActivity() {
     private var stringNumber: String? = null
     private var status = Operation.NULL
 
-    // btnEquals & onOperatorClicked() will only performOperation() if operatorControl is true
+    // btnEquals & operator buttons will only doOperation() if isOperationDoable is true
     // true - Dot, numbers | false - AC, Equals, operators
-    private var operatorControl = false
+    private var isOperationDoable = false
 
     // onAcClicked() if AC, DEL, Dot, numbers are clicked after btnEquals is clicked
     // true - Equals | false - operators, onAcClicked() from AC, DEL, Dot, numbers
-    private var equalsControl = false
+    private var isEqualsClicked = false
 
-    // btnDot will only work if dotControl is true
+    // btnDot will only work if isDotClickable is true
     // true - AC, DEL, Equals, operators | false - Dot
-    private var dotControl = true
+    private var isDotClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,14 +59,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnAc.setOnClickListener { onAcClicked() }
 
         binding.btnDel.setOnClickListener {
-            if (equalsControl) onAcClicked() else {
+            if (isEqualsClicked) onAcClicked() else {
                 if (stringNumber == null) binding.tvResult.text = getString(R.string.zero) else {
                     if (stringNumber!!.length <= 1) {
                         stringNumber = null
                         binding.tvResult.text = getString(R.string.zero)
                     } else {
                         stringNumber = stringNumber!!.dropLast(1)
-                        dotControl = !stringNumber!!.contains(".")
+                        isDotClickable = !stringNumber!!.contains(".")
                         binding.tvResult.text = stringNumber
                     }
                 }
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEquals.setOnClickListener {
-            if (operatorControl) {
+            if (isOperationDoable) {
                 val historyText = binding.tvHistory.text.toString()
 
                 // If the last character is a dot, remove it
@@ -83,17 +83,17 @@ class MainActivity : AppCompatActivity() {
 
                 // plus() - used to concatenate 2 String expressions together
                 binding.tvHistory.text = historyText.plus(resultText).plus("=")
-                performOperation()
+                doOperation()
 
-                operatorControl = false
-                equalsControl = true
-                dotControl = true
+                isOperationDoable = false
+                isEqualsClicked = true
+                isDotClickable = true
             }
         }
 
         binding.btnDot.setOnClickListener {
-            if (dotControl) {
-                stringNumber = if (equalsControl) {
+            if (isDotClickable) {
+                stringNumber = if (isEqualsClicked) {
                     onAcClicked()
                     "0."
                 } else {
@@ -105,8 +105,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 binding.tvResult.text = stringNumber
-                operatorControl = true
-                dotControl = false
+                isOperationDoable = true
+                isDotClickable = false
             }
         }
     }
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     And the number the user clicks will be added to the end of these numbers
      */
     private fun onNumberClicked(clickedNumber: String) {
-        stringNumber = if (equalsControl) {
+        stringNumber = if (isEqualsClicked) {
             onAcClicked()
             clickedNumber
         } else {
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.tvResult.text = stringNumber
-        operatorControl = true
+        isOperationDoable = true
     }
 
     private fun onOperatorClicked(symbol: String, operation: Operation) {
@@ -141,23 +141,23 @@ class MainActivity : AppCompatActivity() {
         var resultText = binding.tvResult.text.toString()
         if (resultText.takeLast(1) == ".") resultText = resultText.dropLast(1)
 
-        // This will be skipped if equalsControl is true (operatorControl = false)
-        if (operatorControl) {
+        // This will be skipped if isEqualsClicked is true (isOperationDoable = false)
+        if (isOperationDoable) {
             binding.tvHistory.text = historyText.plus(resultText).plus(symbol)
-            performOperation()
+            doOperation()
 
             status = operation
-            operatorControl = false
+            isOperationDoable = false
         }
 
-        // This will be skipped if operatorControl is true (equalsControl = false)
-        if (equalsControl) {
+        // This will be skipped if isOperationDoable is true (isEqualsClicked = false)
+        if (isEqualsClicked) {
             binding.tvHistory.text = resultText.plus(symbol)
-            equalsControl = false
+            isEqualsClicked = false
         }
 
         stringNumber = null
-        dotControl = true
+        isDotClickable = true
     }
 
     /*
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     The values in the lastNumber will be transferred to the firstNumber
     And the new value of the lastNumber will be the number that is now on the screen
      */
-    private fun performOperation() {
+    private fun doOperation() {
         lastNumber = binding.tvResult.text.toString().toDouble()
 
         firstNumber = when (status) {
@@ -192,9 +192,9 @@ class MainActivity : AppCompatActivity() {
         lastNumber = 0.0
         stringNumber = null
         status = Operation.NULL
-        operatorControl = false
-        equalsControl = false
-        dotControl = true
+        isOperationDoable = false
+        isEqualsClicked = false
+        isDotClickable = true
     }
 
 }
