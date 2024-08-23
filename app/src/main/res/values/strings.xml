@@ -18,4 +18,5 @@
     <string name="dot">.</string>
     <string name="ac">AC</string>
     <string name="del">DEL</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>
