@@ -1,10 +1,12 @@
 package com.johnreg.calculator
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.johnreg.calculator.databinding.ActivityMainBinding
 import com.johnreg.calculator.databinding.DialogDarkModeBinding
@@ -13,6 +15,8 @@ import java.text.DecimalFormat
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val sharedPreferences by lazy { getSharedPreferences("all_data", Context.MODE_PRIVATE) }
 
     private val mFormatter = DecimalFormat("######.######")
 
@@ -40,8 +44,57 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvResult.text = getString(R.string.zero)
-        setOnClickListenerAllButtons()
         setOnMenuItemClickListenerToolbar()
+        setOnClickListenerAllButtons()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val mode = sharedPreferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    private fun setOnMenuItemClickListenerToolbar() {
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            return@setOnMenuItemClickListener when (menuItem.itemId) {
+                R.id.menu_dark_mode -> {
+                    showDialogAndSetDefaultNightMode()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private fun showDialogAndSetDefaultNightMode() {
+        val dialogBinding = DialogDarkModeBinding.inflate(layoutInflater)
+        dialogBinding.switchDarkMode.isChecked = isDarkMode()
+        MaterialAlertDialogBuilder(this)
+            .setView(dialogBinding.root)
+            .setPositiveButton("Apply") { _, _ ->
+                if (dialogBinding.switchDarkMode.isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    sharedPreferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_YES) }
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    sharedPreferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_NO) }
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .setNeutralButton("System") { _, _ ->
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                sharedPreferences.edit {
+                    putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                }
+            }
+            .show()
+    }
+
+    private fun isDarkMode(): Boolean {
+        val darkModeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return darkModeFlag == Configuration.UI_MODE_NIGHT_YES
     }
 
     private fun setOnClickListenerAllButtons() {
@@ -204,39 +257,8 @@ class MainActivity : AppCompatActivity() {
         isDotClickable = true
     }
 
-    private fun setOnMenuItemClickListenerToolbar() {
-        binding.toolbar.setOnMenuItemClickListener { menuItem ->
-            return@setOnMenuItemClickListener when (menuItem.itemId) {
-                R.id.menu_dark_mode -> {
-                    showDialogAndSetDefaultNightMode()
-                    true
-                }
-
-                else -> false
-            }
-        }
-    }
-
-    private fun showDialogAndSetDefaultNightMode() {
-        val dialogBinding = DialogDarkModeBinding.inflate(layoutInflater)
-        dialogBinding.switchDarkMode.isChecked = isDarkMode()
-        MaterialAlertDialogBuilder(this)
-            .setView(dialogBinding.root)
-            .setPositiveButton("Apply") { _, _ ->
-                if (dialogBinding.switchDarkMode.isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                } else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            .setNegativeButton("Cancel", null)
-            .setNeutralButton("System") { _, _ ->
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            }
-            .show()
-    }
-
-    private fun isDarkMode(): Boolean {
-        val darkModeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return darkModeFlag == Configuration.UI_MODE_NIGHT_YES
+    companion object {
+        const val MODE_KEY = "mode"
     }
 
 }
