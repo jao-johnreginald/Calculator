@@ -53,6 +53,36 @@ class MainActivity : AppCompatActivity() {
 
         val mode = sharedPreferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(mode)
+
+        binding.tvResult.text = sharedPreferences.getString(RESULT_KEY, getString(R.string.zero))
+        binding.tvHistory.text = sharedPreferences.getString(HISTORY_KEY, null)
+
+        firstNumber = sharedPreferences.getString(FIRST_KEY, "0.0")!!.toDouble()
+        lastNumber = sharedPreferences.getString(LAST_KEY, "0.0")!!.toDouble()
+
+        stringNumber = sharedPreferences.getString(STRING_KEY, null)
+        val statusName = sharedPreferences.getString(STATUS_KEY, Operation.NULL.name)!!
+        status = Operation.valueOf(statusName)
+
+        isOperationDoable = sharedPreferences.getBoolean(OPERATION_KEY, false)
+        isEqualsClicked = sharedPreferences.getBoolean(EQUALS_KEY, false)
+        isDotClickable = sharedPreferences.getBoolean(DOT_KEY, true)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        sharedPreferences.edit {
+            putString(RESULT_KEY, binding.tvResult.text.toString())
+            putString(HISTORY_KEY, binding.tvHistory.text.toString())
+            putString(FIRST_KEY, firstNumber.toString())
+            putString(LAST_KEY, lastNumber.toString())
+            putString(STRING_KEY, stringNumber)
+            putString(STATUS_KEY, status.name)
+            putBoolean(OPERATION_KEY, isOperationDoable)
+            putBoolean(EQUALS_KEY, isEqualsClicked)
+            putBoolean(DOT_KEY, isDotClickable)
+        }
     }
 
     private fun setOnMenuItemClickListenerToolbar() {
@@ -259,6 +289,15 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val MODE_KEY = "mode"
+        const val RESULT_KEY = "result_text"
+        const val HISTORY_KEY = "history_text"
+        const val FIRST_KEY = "first_number"
+        const val LAST_KEY = "last_number"
+        const val STRING_KEY = "string_number"
+        const val STATUS_KEY = "status_name"
+        const val OPERATION_KEY = "is_operation_doable"
+        const val EQUALS_KEY = "is_equals_clicked"
+        const val DOT_KEY = "is_dot_clickable"
     }
 
 }
