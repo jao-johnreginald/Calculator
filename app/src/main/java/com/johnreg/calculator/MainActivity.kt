@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private val preferences by lazy { getSharedPreferences("all_data", Context.MODE_PRIVATE) }
 
-    private val mFormatter = DecimalFormat("######.######")
-
     private var firstNumber = 0.0
     private var lastNumber = 0.0
 
@@ -267,7 +265,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (firstNumber.isFinite()) {
-            binding.tvResult.text = mFormatter.format(firstNumber)
+            val formatter = DecimalFormat("######.######")
+            binding.tvResult.text = formatter.format(firstNumber)
         } else {
             Toast.makeText(this, "THE DIVISOR CANNOT BE ZERO", Toast.LENGTH_LONG).show()
             onAcClicked()
