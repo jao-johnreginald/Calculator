@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val sharedPreferences by lazy { getSharedPreferences("all_data", Context.MODE_PRIVATE) }
+    private val preferences by lazy { getSharedPreferences("all_data", Context.MODE_PRIVATE) }
 
     private val mFormatter = DecimalFormat("######.######")
 
@@ -50,28 +50,28 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val mode = sharedPreferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val mode = preferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         AppCompatDelegate.setDefaultNightMode(mode)
 
-        binding.tvResult.text = sharedPreferences.getString(RESULT_KEY, getString(R.string.zero))
-        binding.tvHistory.text = sharedPreferences.getString(HISTORY_KEY, null)
+        binding.tvResult.text = preferences.getString(RESULT_KEY, getString(R.string.zero))
+        binding.tvHistory.text = preferences.getString(HISTORY_KEY, null)
 
-        firstNumber = sharedPreferences.getString(FIRST_KEY, "0.0")!!.toDouble()
-        lastNumber = sharedPreferences.getString(LAST_KEY, "0.0")!!.toDouble()
+        firstNumber = preferences.getString(FIRST_KEY, "0.0")!!.toDouble()
+        lastNumber = preferences.getString(LAST_KEY, "0.0")!!.toDouble()
 
-        stringNumber = sharedPreferences.getString(STRING_KEY, null)
-        val statusName = sharedPreferences.getString(STATUS_KEY, Operation.NULL.name)!!
+        stringNumber = preferences.getString(STRING_KEY, null)
+        val statusName = preferences.getString(STATUS_KEY, Operation.NULL.name)!!
         status = Operation.valueOf(statusName)
 
-        isOperationDoable = sharedPreferences.getBoolean(OPERATION_KEY, false)
-        isEqualsClicked = sharedPreferences.getBoolean(EQUALS_KEY, false)
-        isDotClickable = sharedPreferences.getBoolean(DOT_KEY, true)
+        isOperationDoable = preferences.getBoolean(OPERATION_KEY, false)
+        isEqualsClicked = preferences.getBoolean(EQUALS_KEY, false)
+        isDotClickable = preferences.getBoolean(DOT_KEY, true)
     }
 
     override fun onPause() {
         super.onPause()
 
-        sharedPreferences.edit {
+        preferences.edit {
             putString(RESULT_KEY, binding.tvResult.text.toString())
             putString(HISTORY_KEY, binding.tvHistory.text.toString())
             putString(FIRST_KEY, firstNumber.toString())
@@ -105,16 +105,16 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Apply") { _, _ ->
                 if (dialogBinding.switchDarkMode.isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    sharedPreferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_YES) }
+                    preferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_YES) }
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    sharedPreferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_NO) }
+                    preferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_NO) }
                 }
             }
             .setNegativeButton("Cancel", null)
             .setNeutralButton("System") { _, _ ->
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                sharedPreferences.edit {
+                preferences.edit {
                     putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 }
             }
