@@ -112,9 +112,7 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Cancel", null)
             .setNeutralButton("System") { _, _ ->
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                preferences.edit {
-                    putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                }
+                preferences.edit { putInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) }
             }
             .show()
     }
