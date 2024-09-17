@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setOnMenuItemClickListenerToolbar()
-        setOnClickListenerAllButtons()
+        setMenu()
+        setButtons()
     }
 
     override fun onResume() {
@@ -55,11 +55,11 @@ class MainActivity : AppCompatActivity() {
         saveData()
     }
 
-    private fun setOnMenuItemClickListenerToolbar() {
+    private fun setMenu() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             return@setOnMenuItemClickListener when (menuItem.itemId) {
                 R.id.menu_dark_mode -> {
-                    showDialogAndSetDefaultNightMode()
+                    showDialogAndSetDarkMode()
                     true
                 }
 
@@ -68,9 +68,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogAndSetDefaultNightMode() {
+    private fun showDialogAndSetDarkMode() {
         val dialogBinding = DialogDarkModeBinding.inflate(layoutInflater)
         dialogBinding.switchDarkMode.isChecked = isDarkMode()
+
         MaterialAlertDialogBuilder(this)
             .setView(dialogBinding.root)
             .setPositiveButton("Apply") { _, _ ->
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         return darkModeFlag == Configuration.UI_MODE_NIGHT_YES
     }
 
-    private fun setOnClickListenerAllButtons() {
+    private fun setButtons() {
         binding.btnZero.setOnClickListener { onNumberClicked("0") }
         binding.btnOne.setOnClickListener { onNumberClicked("1") }
         binding.btnTwo.setOnClickListener { onNumberClicked("2") }
