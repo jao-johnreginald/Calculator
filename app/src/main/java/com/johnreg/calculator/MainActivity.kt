@@ -296,4 +296,12 @@ class MainActivity : AppCompatActivity() {
         const val DOT_KEY = "is_dot_clickable"
     }
 
+    enum class Operation {
+        DIVIDE,
+        MULTI,
+        MINUS,
+        PLUS,
+        NULL
+    }
+
 }
