@@ -252,8 +252,8 @@ class MainActivity : AppCompatActivity() {
 
         firstNumber = preferences.getString(FIRST_KEY, "0.0")!!.toDouble()
         lastNumber = preferences.getString(LAST_KEY, "0.0")!!.toDouble()
-
         stringNumber = preferences.getString(STRING_KEY, null)
+
         val statusName = preferences.getString(STATUS_KEY, Operation.NULL.name)!!
         status = Operation.valueOf(statusName)
 
