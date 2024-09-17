@@ -168,14 +168,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*
-    When the user clicks on any number, we will first check the variable number
-    If the number variable is null, it means there is no number on the screen
-    And the number that the user clicks will appear on the screen
-    But if the variable number is not null
-    All it means there are already entered numbers on the screen
-    And the number the user clicks will be added to the end of these numbers
-     */
     private fun onNumberClicked(clickedNumber: String) {
         stringNumber = if (isEqualsClicked) {
             onAcClicked()
@@ -219,12 +211,6 @@ class MainActivity : AppCompatActivity() {
         isDotClickable = true
     }
 
-    /*
-    The lastNumber will always keep the last value printed on the screen
-    So the new value is entered on the screen and any of the operators are clicked
-    The values in the lastNumber will be transferred to the firstNumber
-    And the new value of the lastNumber will be the number that is now on the screen
-     */
     private fun doOperation() {
         lastNumber = binding.tvResult.text.toString().toDouble()
 
