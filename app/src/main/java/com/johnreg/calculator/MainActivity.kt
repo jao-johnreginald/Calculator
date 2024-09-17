@@ -47,39 +47,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        val mode = preferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        AppCompatDelegate.setDefaultNightMode(mode)
-
-        binding.tvResult.text = preferences.getString(RESULT_KEY, getString(R.string.zero))
-        binding.tvHistory.text = preferences.getString(HISTORY_KEY, null)
-
-        firstNumber = preferences.getString(FIRST_KEY, "0.0")!!.toDouble()
-        lastNumber = preferences.getString(LAST_KEY, "0.0")!!.toDouble()
-
-        stringNumber = preferences.getString(STRING_KEY, null)
-        val statusName = preferences.getString(STATUS_KEY, Operation.NULL.name)!!
-        status = Operation.valueOf(statusName)
-
-        isOperationDoable = preferences.getBoolean(OPERATION_KEY, false)
-        isEqualsClicked = preferences.getBoolean(EQUALS_KEY, false)
-        isDotClickable = preferences.getBoolean(DOT_KEY, true)
+        setData()
     }
 
     override fun onPause() {
         super.onPause()
-
-        preferences.edit {
-            putString(RESULT_KEY, binding.tvResult.text.toString())
-            putString(HISTORY_KEY, binding.tvHistory.text.toString())
-            putString(FIRST_KEY, firstNumber.toString())
-            putString(LAST_KEY, lastNumber.toString())
-            putString(STRING_KEY, stringNumber)
-            putString(STATUS_KEY, status.name)
-            putBoolean(OPERATION_KEY, isOperationDoable)
-            putBoolean(EQUALS_KEY, isEqualsClicked)
-            putBoolean(DOT_KEY, isDotClickable)
-        }
+        saveData()
     }
 
     private fun setOnMenuItemClickListenerToolbar() {
@@ -281,6 +254,39 @@ class MainActivity : AppCompatActivity() {
         isOperationDoable = false
         isEqualsClicked = false
         isDotClickable = true
+    }
+
+    private fun setData() {
+        val mode = preferences.getInt(MODE_KEY, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(mode)
+
+        binding.tvResult.text = preferences.getString(RESULT_KEY, getString(R.string.zero))
+        binding.tvHistory.text = preferences.getString(HISTORY_KEY, null)
+
+        firstNumber = preferences.getString(FIRST_KEY, "0.0")!!.toDouble()
+        lastNumber = preferences.getString(LAST_KEY, "0.0")!!.toDouble()
+
+        stringNumber = preferences.getString(STRING_KEY, null)
+        val statusName = preferences.getString(STATUS_KEY, Operation.NULL.name)!!
+        status = Operation.valueOf(statusName)
+
+        isOperationDoable = preferences.getBoolean(OPERATION_KEY, false)
+        isEqualsClicked = preferences.getBoolean(EQUALS_KEY, false)
+        isDotClickable = preferences.getBoolean(DOT_KEY, true)
+    }
+
+    private fun saveData() {
+        preferences.edit {
+            putString(RESULT_KEY, binding.tvResult.text.toString())
+            putString(HISTORY_KEY, binding.tvHistory.text.toString())
+            putString(FIRST_KEY, firstNumber.toString())
+            putString(LAST_KEY, lastNumber.toString())
+            putString(STRING_KEY, stringNumber)
+            putString(STATUS_KEY, status.name)
+            putBoolean(OPERATION_KEY, isOperationDoable)
+            putBoolean(EQUALS_KEY, isEqualsClicked)
+            putBoolean(DOT_KEY, isDotClickable)
+        }
     }
 
     companion object {
